@@ -1,28 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.paireddevices.DeviceListActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:text="Paired Devices"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPairedDevices"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_height="wrap_content"
+        tools:context=".ui.paireddevices.DeviceListActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ProgressBar
+            android:id="@+id/pbScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/txtScan"
+            app:layout_constraintEnd_toStartOf="@+id/txtScan"
+            app:layout_constraintTop_toTopOf="@id/txtScan" />
+
+        <TextView
+            android:id="@+id/txtScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:gravity="center_vertical"
+            android:text="Scan"
+            android:textColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="@id/txtAvailable"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtAvailable" />
+
+        <TextView
+            android:id="@+id/txtAvailable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="Available Devices"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtNoNewDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No new devices found"
+            android:textColor="@color/hint"
+            app:layout_constraintBottom_toBottomOf="@id/rvDiscoveryDevices"
+            app:layout_constraintEnd_toEndOf="@+id/rvDiscoveryDevices"
+            app:layout_constraintStart_toStartOf="@+id/rvDiscoveryDevices"
+            app:layout_constraintTop_toTopOf="@id/rvDiscoveryDevices" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:text="Paired Devices"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvDiscoveryDevices" />
+
+        <TextView
+            android:id="@+id/txtNoPairedDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No paired devices found"
+            android:textColor="@color/hint"
+            app:layout_constraintBottom_toBottomOf="@id/rvPairedDevices"
+            app:layout_constraintEnd_toEndOf="@+id/rvPairedDevices"
+            app:layout_constraintStart_toStartOf="@+id/rvPairedDevices"
+            app:layout_constraintTop_toTopOf="@id/rvPairedDevices" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPairedDevices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="200dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDiscoveryDevices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/txtAvailable" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

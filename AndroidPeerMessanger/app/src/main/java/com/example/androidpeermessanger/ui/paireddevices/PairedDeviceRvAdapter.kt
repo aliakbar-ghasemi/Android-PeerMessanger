@@ -39,4 +39,10 @@ class PairedDeviceRvAdapter : RecyclerView.Adapter<PairedDeviceRvAdapter.VH>() {
         this.list = pairedDevices
         notifyDataSetChanged()
     }
+
+    fun add(device: BluetoothDevice) {
+        list.add(0,device)
+        list = LinkedHashSet(list).toMutableList()
+        notifyDataSetChanged()
+    }
 }
